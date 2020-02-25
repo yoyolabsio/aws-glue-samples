@@ -17,5 +17,9 @@ spark.eventLog.enabled                      true\n\
 spark.history.ui.port                       18080\n\
 ' > /opt/spark/conf/spark-defaults.conf
 
+RUN echo $'\n\
+SPARK_DAEMON_MEMORY=$SPARK_DAEMON_MEMORY\n\
+' > /opt/spark/conf/spark-env.sh
+
 ENTRYPOINT ["/bin/bash", "-c"]:
 

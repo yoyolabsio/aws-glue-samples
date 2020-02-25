@@ -18,3 +18,16 @@ If you prefer local access (not to have EC2 instance for Apache Spark history se
         $ docker run -itd -e SPARK_HISTORY_OPTS="$SPARK_HISTORY_OPTS -Dspark.history.fs.logDirectory=s3a://path_to_eventlog -Dspark.hadoop.fs.s3a.access.key=AWS_ACCESS_KEY_ID -Dspark.hadoop.fs.s3a.secret.key=AWS_SECRET_ACCESS_KEY" -p 18080:18080 glue/sparkui:latest "/opt/spark/bin/spark-class org.apache.spark.deploy.history.HistoryServer"
     ```
 3. Open http://localhost:18080 in your browser
+
+**Optional**
+
+***Memory***
+
+To increase memory for the Spark History Server, pass SPARK_DAEMON_MEMORY as environment variable into docker run, for example like this:
+```
+        $ docker run -itd -e SPARK_DAEMON_MEMORY=4g -e SPARK_HISTORY_OPTS="$SPARK_HISTORY_OPTS -Dspark.history.fs.logDirectory=s3a://path_to_eventlog -Dspark.hadoop.fs.s3a.access.key=AWS_ACCESS_KEY_ID -Dspark.hadoop.fs.s3a.secret.key=AWS_SECRET_ACCESS_KEY" -p 18080:18080 glue/sparkui:latest "/opt/spark/bin/spark-class org.apache.spark.deploy.history.HistoryServer"
+```
+
+***Threads***
+
+To increase the number of threads that are being used by the history server, add `-Dspark.history.fs.numReplayThreads=<n>` (where `<n>` is the number of cores you want to use) to the `SPARK_HISTORY_OPTS` for the run command.
