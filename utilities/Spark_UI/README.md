@@ -9,7 +9,7 @@ If you prefer local access (not to have EC2 instance for Apache Spark history se
 
 **To start the Spark history server and view the Spark UI using Docker**
 
-1. Download a Dockerfile from GitHub
+1. Download Dockerfile and pom.xml / checkout this repo
 2. Run commands shown below
     - Replace **AWS_ACCESS_KEY_ID** and **AWS_SECRET_ACCESS_KEY** with your valid AWS credential
     - Replace **s3a://path_to_eventlog** with your event log directory
